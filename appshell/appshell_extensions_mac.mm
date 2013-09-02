@@ -100,6 +100,18 @@ LiveBrowserMgrMac* LiveBrowserMgrMac::GetInstance()
     return s_instance;
 }
 
+
+int32 MyTestFunction(ExtensionString url)
+{
+    NSString* urlString = [NSString stringWithUTF8String:url.c_str()];
+    
+    if ([[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: urlString]] == NO) {
+        return ERR_UNKNOWN;
+    }
+    
+    return NO_ERROR;
+}
+
 void LiveBrowserMgrMac::Shutdown()
 {
     delete s_instance;

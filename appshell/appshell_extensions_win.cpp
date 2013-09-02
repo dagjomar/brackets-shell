@@ -389,7 +389,17 @@ void CloseLiveBrowser(CefRefPtr<CefBrowser> browser, CefRefPtr<CefProcessMessage
         liveBrowserMgr->SetCloseTimeoutTimerId( ::SetTimer(NULL, 0, 10 * 1000, LiveBrowserMgrWin::CloseLiveBrowserTimerCallback) );
     }
 }
+int32 MyTestFunction(ExtensionString url)
+{
+    DWORD result = (DWORD)ShellExecute(NULL, L"open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 
+    // If the result > 32, the function suceeded. If the result is <= 32, it is an
+    // error code.
+    if (result <= 32)
+        return ConvertWinErrorCode(result);
+
+    return NO_ERROR;
+}
 int32 OpenURLInDefaultBrowser(ExtensionString url)
 {
     DWORD result = (DWORD)ShellExecute(NULL, L"open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);

@@ -407,6 +407,22 @@ public:
                 
                 // No additional response args for this function
             }
+        }  else if (message_name == "MyTestFunction") {
+            // Parameters:
+            //  0: int32 - callback id
+            //  1: string - url
+            if (argList->GetSize() != 2 ||
+                argList->GetType(1) != VTYPE_STRING) {
+                error = ERR_INVALID_PARAMS;
+            }
+            
+            if (error == NO_ERROR) {
+                ExtensionString url = argList->GetString(1);
+                
+                error = MyTestFunction(url);
+                
+                // No additional response args for this function
+            }
         } else if (message_name == "ShowOSFolder") {
             // Parameters:
             //  0: int32 - callback id

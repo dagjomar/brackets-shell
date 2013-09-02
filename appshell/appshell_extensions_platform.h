@@ -56,6 +56,9 @@ inline void* getMenuParent(CefRefPtr<CefBrowser>browser) {
 #elif defined(OS_MACOSX)
 typedef std::string ExtensionString;
 inline void* getMenuParent(CefRefPtr<CefBrowser>browser) {return NULL;} // Mac uses a shared menu bar
+
+
+
 #else
 typedef std::string ExtensionString;
 inline void* getMenuParent(CefRefPtr<CefBrowser>browser) {
@@ -63,7 +66,10 @@ inline void* getMenuParent(CefRefPtr<CefBrowser>browser) {
         GTK_WIDGET(browser->GetHost()->GetWindowHandle()),
         GTK_TYPE_WINDOW);
 }
+
+
 #endif
+
 
 
 // Native extension code. These are implemented in appshell_extensions_mac.mm
@@ -73,7 +79,7 @@ int32 OpenLiveBrowser(ExtensionString argURL, bool enableRemoteDebugging);
 void CloseLiveBrowser(CefRefPtr<CefBrowser> browser, CefRefPtr<CefProcessMessage> response);
 
 int32 OpenURLInDefaultBrowser(ExtensionString url);
-
+int32 MyTestFunction(ExtensionString url);
 int32 ShowOpenDialog(bool allowMulitpleSelection,
                      bool chooseDirectory,
                      ExtensionString title,

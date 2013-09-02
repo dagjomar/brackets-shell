@@ -801,6 +801,21 @@ if (!appshell.app) {
         DragWindow();
     };
  
+
+
+    /**
+     * My test function
+     *
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function MyTestFunction();
+    appshell.app.MyTestFunction = function (url, callback) {
+        console.log('inside here');
+        MyTestFunction(callback || _dummyCallback, url);
+        console.log('after calling function');
+    };
+ 
+
     // Alias the appshell object to brackets. This is temporary and should be removed.
     brackets = appshell;
 })();
